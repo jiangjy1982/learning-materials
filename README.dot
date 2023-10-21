@@ -1,0 +1,26 @@
+digraph G {
+  comment="http://magjac.com/graphviz-visual-editor/"
+  fontname="Helvetica,Arial,sans-serif"
+  node [fontname="Helvetica,Arial,sans-serif", shape=box, color=blue, style=bold]
+  edge [fontname="Helvetica,Arial,sans-serif"]
+
+  I1 [label="Transformer\n#google\n#model",
+      url="https://arxiv.org/abs/1706.03762"];
+
+  I2 [label="GPT1\n#openai\n#llm",
+      url="https://paperswithcode.com/paper/improving-language-understanding-by"];
+
+  I3 [label="GPT2\n#openai\n#llm",
+      url="https://paperswithcode.com/paper/language-models-are-unsupervised-multitask"];
+
+  I4 [label="GPT3\n#openai\n#llm",
+      url="https://paperswithcode.com/method/gpt-3"];
+
+  I5 [label="BERT\n#google\n#llm",
+      url="https://paperswithcode.com/method/bert"];
+
+  I1 -> I2 [label="decoder-only"]
+  I2 -> I3
+  I3 -> I4
+  I1 -> I5 [label="encoder-only"];
+}
