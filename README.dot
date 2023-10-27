@@ -1,26 +1,71 @@
 digraph G {
-  comment="http://magjac.com/graphviz-visual-editor/"
-  fontname="Helvetica,Arial,sans-serif"
-  node [fontname="Helvetica,Arial,sans-serif", shape=box, color=blue, style=bold]
-  edge [fontname="Helvetica,Arial,sans-serif"]
+    comment="http://magjac.com/graphviz-visual-editor/"
+    compound = true;
+    fontname="Helvetica,Arial,sans-serif"
+    node [fontname="Helvetica,Arial,sans-serif", shape=box, color=blue]
+    edge [fontname="Helvetica,Arial,sans-serif"]
 
-  I1 [label="Transformer\n#google\n#model",
-      url="https://arxiv.org/abs/1706.03762"];
 
-  I2 [label="GPT1\n#openai\n#llm",
-      url="https://paperswithcode.com/paper/improving-language-understanding-by"];
+    word2vec [label="Word2Vec"];
 
-  I3 [label="GPT2\n#openai\n#llm",
-      url="https://paperswithcode.com/paper/language-models-are-unsupervised-multitask"];
+    transformer [label="Transformer\n#Google\n#model"];
 
-  I4 [label="GPT3\n#openai\n#llm",
-      url="https://paperswithcode.com/method/gpt-3"];
+    bert [label="BERT\n#Google\n#llm"];
 
-  I5 [label="BERT\n#google\n#llm",
-      url="https://paperswithcode.com/method/bert"];
+    albert [label="ALBERT\n#Google"];
 
-  I1 -> I2 [label="decoder-only"]
-  I2 -> I3
-  I3 -> I4
-  I1 -> I5 [label="encoder-only"];
+    gpt1 [label="GPT1\n#OpenAI\n#llm"];
+
+    gpt2 [label="GPT2\n#OpenAI\n#llm"];
+
+    gpt3 [label="GPT3\n#OpenAI\n#llm"];
+
+    gpt4 [label="GPT4\n#OpenAI\n#llm"];
+
+    gptj [label="GPT-J\n#llm"];
+
+    lambda [label="LaMDA\n#Google"];
+
+    palm [label="PaLM\n#Google"];
+
+    chinchilla [label="Chinchilla\n#Google"];
+
+    llama [label="LLaMA\n#Meta"];
+
+    llama2 [label="LLaMA-2\n#Meta"];
+
+    alexnet [label="AlexNet\n#model\n#cv"];
+  
+    resnet [label="ResNet\n#cv"];
+  
+    gan [label="GAN\n#cv"];
+  
+    vit [label="ViT\n#cv"];
+  
+    pathways [label="Pathways\n#Google\n#infra"];
+  
+    subgraph cluster0 {
+        label = "Encoder Only";
+        style = filled;
+        color = lightgrey;
+
+        bert albert;
+    }
+
+    subgraph cluster1 {
+        label = "Decoder Only";
+        style = filled;
+        color = lightgrey;
+
+        gpt1 gpt2 gpt3 gpt4 gptj;
+        lambda palm chinchilla;
+        llama llama2;
+    }
+
+    transformer -> gpt1 [lhead=cluster1];
+    gpt1 -> gpt2 -> gpt3 -> gpt4;
+    transformer -> bert [lhead=cluster0];
+    bert -> albert;
+    llama -> llama2;
+    transformer -> vit;
 }
